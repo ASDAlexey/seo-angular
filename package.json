@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "startconcurrentlywithproxy": "concurrently --kill-others \"json-server -q src/assets/data.json\" \"ng serve --proxy-config proxy.conf.json\""
+    "mock:server": "json-server --watch mocks/data.json",
+    "start:proxy:mock:server": "concurrently --kill-others \"npm run mock:server\" \"npm run start\""
   },
   "private": true,
   "dependencies": {

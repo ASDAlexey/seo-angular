@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="my-2">
+      <ng-container *ngIf="details; else link">{{ product.name }}</ng-container>
+      <ng-template #link>
+        <a [routerLink]="product.id">{{ product.name }}</a>
+      </ng-template>
+    </h4>
+  </div>
+  <img [attr.src]="product.image" [attr.alt]="product.name">
+  <div class="card-body" *ngIf="!details">
+    <p class="my-2">{{ product.describtion }}</p>
+  </div>
+  <div class="card-footer">
+    <h4 class="text-right my-2">{{ product.price }}</h4>
+  </div>
+</div>

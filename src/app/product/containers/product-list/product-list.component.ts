@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -10,12 +12,9 @@ import { ProductService } from '../../services/product.service';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private service: ProductService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.service.getProducts().subscribe((res) => {
-      console.log(res);
-      this.products = res;
-    });
+    this.route.data.pipe(map(data => data['products'])).subscribe((res) => (this.products = res));
   }
 }

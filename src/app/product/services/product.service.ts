@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 const baseUrl = `${environment.apiUrl}/products`;
 
@@ -11,7 +12,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(baseUrl);
+    return this.http.get<Product[]>(baseUrl).pipe(delay(100));
   }
 
   getProduct(id: string): Observable<Product> {

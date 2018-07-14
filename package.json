@@ -12,7 +12,21 @@
     "e2e": "ng e2e",
     "mock:server": "json-server --watch mocks/data.json",
     "start:proxy:mock:server": "concurrently --kill-others \"npm run mock:server\" \"npm run start\"",
-    "serve:prod": "npx serve -s ./dist/store"
+    "serve:prod": "npx serve -s ./dist/store",
+    "now:build": "true",
+    "now": "now deploy && now alias"
+  },
+  "now": {
+    "name": "egghead-store",
+    "alias": [
+      "egghead-store.now.sh"
+    ],
+    "files": [
+      "dist",
+      "package.json",
+      "server.ts",
+      "tsconfig.json"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -29,6 +43,7 @@
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.5.4",
+    "now": "^11.2.9",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
